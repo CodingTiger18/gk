@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 2: Monetization Strategy — GuruKripa Documentation</title>
+  <style>
+    :root { --primary: #800020; --secondary: #E65100; --accent: #D4AF37; --bg: #FAF7F2; --surface: #FFFFFF; --text: #2B2520; --text-muted: #6B6258; --border: #E8E1D5; --success: #2E7D32; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 40px 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 12px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+    .nav-bar a { color: var(--secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .doc-content { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 36px; box-shadow: 0 4px 16px rgba(128, 0, 32, 0.04); }
+    h1, h2, h3 { color: var(--primary); margin: 24px 0 12px; }
+    h1 { margin-top: 0; font-size: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.88rem; }
+    th { background: rgba(128,0,32,0.05); color: var(--primary); text-align: left; padding: 10px; border: 1px solid var(--border); }
+    td { padding: 10px; border: 1px solid var(--border); }
+    pre { background: #1E1A16; color: #FAF7F2; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; margin: 16px 0; }
+    .meta-box { background: rgba(230,81,0,0.05); border-left: 4px solid var(--secondary); padding: 12px 16px; margin: 16px 0; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav-bar">
+      <a href="01_explorer.html">← Prev: 01. Explorer</a>
+      <a href="index.html">Master Hub</a>
+      <a href="03_architecture.html">Next: 03. Architecture →</a>
+    </div>
+
+    <div class="doc-content">
+      <h1>Stage 2: Ad-Revenue & Monetization Strategy</h1>
+      <div class="meta-box">
+        <strong>Status:</strong> Completed • <strong>Author:</strong> <code>agent-2-monetization</code> • <strong>Focus:</strong> Zero-CLS Ad Containers, Google AdSense Approval, Tier-1 RPM.
+      </div>
+
+      <h2>1. Ad Networks & RPM Architecture</h2>
+      <p>GuruKripa optimizes monetization across both global NRI diaspora visitors and domestic Indian vernacular devotees:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Traffic Segment</th>
+            <th>Share</th>
+            <th>Projected RPM</th>
+            <th>Optimal Ad Placements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tier-1 Diaspora</strong> (USA, UK, Canada, Australia)</td>
+            <td>35% – 45%</td>
+            <td><strong>$12.00 – $28.00</strong></td>
+            <td>Top Leaderboard (728x90), Panchang In-Content Rectangle (336x280)</td>
+          </tr>
+          <tr>
+            <td><strong>Domestic Indian</strong> (Vernacular & Metros)</td>
+            <td>55% – 65%</td>
+            <td><strong>$1.20 – $4.50</strong></td>
+            <td>Mobile Sticky Anchor (320x50), In-feed native units in Moral Stories</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Strict Zero-CLS Ad Containers</h2>
+      <p>Every ad slot enforces layout containment (<code>contain: layout style;</code>) and reserved aspect-ratio styling, preventing any unexpected layout jump:</p>
+      <pre><code>.gk-ad-wrapper {
+  background: rgba(128, 0, 32, 0.02);
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+  border-radius: 8px;
+  contain: layout style;
+  min-height: 90px; /* or 280px */
+}</code></pre>
+
+      <h2>3. AdSense Compliance Checklist</h2>
+      <ul>
+        <li><strong>Authorized Sellers:</strong> Root <code>public/ads.txt</code> published.</li>
+        <li><strong>Originality:</strong> Public-domain Sanskrit texts paired with original English word-by-word Sabdartha and philosophical purports.</li>
+        <li><strong>Cookieless Consent:</strong> Google Consent Mode v2 banner pre-integrated in <code>src/main.js</code>.</li>
+        <li><strong>Privacy Policy Transparency:</strong> Explicit Google DART cookie disclosures, Google Ad Settings opt-out link, and CCPA Do Not Sell compliance.</li>
+      </ul>
+
+      <h2>4. 5 Active Zero-CLS Ad Slots in Production</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Slot ID</th>
+            <th>Format</th>
+            <th>Desktop / Mobile Dimensions</th>
+            <th>Placement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ad-header-leaderboard</code></td>
+            <td>Leaderboard Banner</td>
+            <td>728x90 / 320x50</td>
+            <td>Sub-nav top bar (Visible across all main views)</td>
+          </tr>
+          <tr>
+            <td><code>ad-panchang-inline</code></td>
+            <td>Medium Rectangle</td>
+            <td>336x280 / 300x250</td>
+            <td>Below Panchang Muhurtas & ephemeris tables</td>
+          </tr>
+          <tr>
+            <td><code>ad-stotra-incontent</code></td>
+            <td>In-Content Rectangle</td>
+            <td>300x250</td>
+            <td>Between Stotra 2 and Stotra 3</td>
+          </tr>
+          <tr>
+            <td><code>ad-story-native</code></td>
+            <td>Native In-Feed Unit</td>
+            <td>650x180 / 300x250</td>
+            <td>Between Story 1 and Story 2</td>
+          </tr>
+          <tr>
+            <td><code>ad-footer-anchor</code></td>
+            <td>Sticky Bottom Banner</td>
+            <td>728x90 / 320x50</td>
+            <td>Fixed viewport bottom with persistent ✕ dismiss button</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>5. Dynamic Single-Page Application (SPA) SEO Engine</h2>
+      <p>GuruKripa features an automated client-side SEO updater (<code>updateSEO()</code>) that dynamically modifies:</p>
+      <ul>
+        <li><strong>Page Title & Meta Descriptions:</strong> Dynamically tailored for each view (Panchang, 12 Jyotirlingas, Stotras, Japa Mala, Moral Stories).</li>
+        <li><strong>Canonical & OpenGraph Meta:</strong> Injects canonical URLs and OpenGraph preview banner (<code>public/assets/og-banner.svg</code>).</li>
+        <li><strong>Schema.org JSON-LD:</strong> Generates multi-graph schemas including <code>WebApplication</code>, <code>WebSite</code>, <code>BreadcrumbList</code>, and interactive <code>FAQPage</code> rich snippets.</li>
+      </ul>
+
+      <h2>6. Ethical Dharmic Affiliate Monetization</h2>
+      <p>To provide immediate $0-cost revenue prior to AdSense volume approval, GuruKripa integrates curated scriptural editions (Gita Press Gorakhpur) and consecrated physical Japa Malas (5-Mukhi Rudraksha, Vrindavan Tulasi) marked with <code>rel="sponsored nofollow noopener"</code>.</p>
+
+      <h2>7. Markdown Source Reference</h2>
+      <p>Full details are in <a href="../02_monetization_strategy.md"><code>agent_docs/02_monetization_strategy.md</code></a>.</p>
+    </div>
+  </div>
+</body>
+</html>
